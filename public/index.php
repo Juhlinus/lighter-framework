@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Request;
 
 $container = require __DIR__ . '/../bootstrap/app.php';
@@ -31,7 +32,14 @@ switch ($route[0]) {
 
     case \FastRoute\Dispatcher::FOUND:
         $controller = $route[1];
-        $parameters = $route[2];
+        $parameters = [];
+
+        // Route model binding
+        foreach ($route[2] as $key => $value) {
+            $model = 'App\\Model\\' . Str::studly($key);
+
+            $parameters[$key] = $model::find($value);
+        }
 
         $response = $container->call($controller, $parameters);
         break;

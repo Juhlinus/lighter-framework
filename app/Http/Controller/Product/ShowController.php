@@ -18,12 +18,10 @@ class ShowController
         $this->twig = $twig;
     }
 
-    public function __invoke($id): Response
+    public function __invoke(Product $product): Response
     {
-        $product = Product::findOrFail($id);
-
-        return new Response($this->twig->render('product/show.twig', [
-            'product' => $product,
-        ]));
+        return new Response(
+            $this->twig->render('product/show.twig', compact('product'))
+        );
     }
 }
