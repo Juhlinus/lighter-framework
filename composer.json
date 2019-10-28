@@ -1,0 +1,23 @@
+{
+    "name": "juhlinus/lighter-framework",
+    "description": "A lightweight framework",
+    "autoload": {
+        "psr-4": {
+            "Lighter\\": "src/Lighter/"
+        }
+    },
+    "require": {
+        "league/route": "^4.3",
+        "league/container": "^3.3",
+        "twig/twig": "^2.12",
+        "php-di/php-di": "^6.0",
+        "symfony/http-foundation": "^4.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Linus Juhlin",
+            "email": "juhlinus@gmail.com"
+        }
+    ]
+}
