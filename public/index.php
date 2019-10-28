@@ -2,7 +2,7 @@
 
 use Symfony\Component\HttpFoundation\Request;
 
-$container = require __DIR__ . '/../app/bootstrap.php';
+$container = require __DIR__ . '/../bootstrap/app.php';
 
 $dispatcher = require_once __DIR__ . '/../routes/web.php';
 

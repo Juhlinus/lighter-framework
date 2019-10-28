@@ -3,15 +3,18 @@
     "description": "A lightweight framework",
     "autoload": {
         "psr-4": {
-            "Lighter\\": "src/Lighter/"
+            "App\\": "app/"
         }
     },
     "require": {
+        "php": ">=7.2",
         "league/route": "^4.3",
         "league/container": "^3.3",
         "twig/twig": "^2.12",
         "php-di/php-di": "^6.0",
-        "symfony/http-foundation": "^4.3"
+        "symfony/http-foundation": "^4.3",
+        "illuminate/database": "^6.3",
+        "illuminate/pagination": "^6.3"
     },
     "license": "MIT",
     "authors": [
