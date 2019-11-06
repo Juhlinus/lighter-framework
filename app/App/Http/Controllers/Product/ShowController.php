@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controller\Product;
+namespace App\Http\Controllers\Product;
 
 use Twig_Environment;
-use App\Model\Product;
+use Domain\Product\Models\Product;
+use Domain\Product\DTO\ProductData;
 use Symfony\Component\HttpFoundation\Response;
 
 class ShowController
@@ -20,8 +21,10 @@ class ShowController
 
     public function __invoke(Product $product): Response
     {
+        $product_data = new ProductData($product->toArray());
+
         return new Response(
-            $this->twig->render('product/show.twig', compact('product'))
+            $this->twig->render('product/show.twig', compact('product_data'))
         );
     }
 }

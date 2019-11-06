@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controller;
+namespace App\Http\Controllers\Home;
 
 use Twig_Environment;
-use App\Model\Product;
+use Domain\Product\Models\Product;
 use Symfony\Component\HttpFoundation\Response;
 
-class HomeController
+class IndexController
 {
     /**
      * @var Twig_Environment
