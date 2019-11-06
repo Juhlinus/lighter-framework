@@ -40,12 +40,21 @@ switch ($route[0]) {
             'request' => $request,
         ];
 
+        $directory = new RecursiveDirectoryIterator(__DIR__ . '/../app/Domain/', RecursiveDirectoryIterator::SKIP_DOTS);
+        $iterator = new RecursiveIteratorIterator($directory);
+
         // Route model binding
         foreach ($route[2] as $key => $value) {
-            if (file_exists(__DIR__ . '/../app/Model/' . Str::studly($key) . '.php')) {
-                $model = 'App\\Model\\' . Str::studly($key);
+            foreach ($iterator as $file) {
+                $file_info = pathinfo($file);
 
-                $parameters[$key] = $model::find($value);
+                if (strpos(strtolower($file_info['dirname']), 'models')) {
+                    if ($file_info['filename'] === Str::studly($key)) {
+                        $model = str_replace('/', '\\', explode('../app', $file_info['dirname'])[1]) . '\\' . Str::studly($key);
+
+                        $parameters[$key] = $model::find($value);
+                    }
+                }
             }
         }
 
