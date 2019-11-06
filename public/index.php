@@ -42,7 +42,7 @@ switch ($route[0]) {
 
         // Route model binding
         foreach ($route[2] as $key => $value) {
-            if (file_exists(__DIR__ . '/../app/Model/' . Str::studly($key))) {
+            if (file_exists(__DIR__ . '/../app/Model/' . Str::studly($key) . '.php')) {
                 $model = 'App\\Model\\' . Str::studly($key);
 
                 $parameters[$key] = $model::find($value);
