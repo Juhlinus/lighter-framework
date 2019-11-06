@@ -21,10 +21,12 @@ class ShowController
 
     public function __invoke(Product $product): Response
     {
-        $product_data = new ProductData($product->toArray());
+        $product_data = ProductData::create($product);
 
         return new Response(
-            $this->twig->render('product/show.twig', compact('product_data'))
+            $this->twig->render('product/show.twig', [
+                'product' => $product_data,
+            ])
         );
     }
 }

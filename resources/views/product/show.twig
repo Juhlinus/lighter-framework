@@ -2,8 +2,7 @@
 
 {% block content %}
 
-    <h1>{{ product.price }}</h1>
-
-    <blockquote>{{ product.stockplace }}</blockquote>
+	<h1 class="text-2xl">{{ product.name }}</h1>
+	<div class="text-sm">{{ product.description|raw }}</div>
 
 {% endblock %}
