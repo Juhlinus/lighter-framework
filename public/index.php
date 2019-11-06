@@ -16,10 +16,14 @@ $route = $dispatcher->dispatch(
 
 switch ($route[0]) {
     case \FastRoute\Dispatcher::NOT_FOUND:
-        $response = new \Symfony\Component\HttpFoundation\Response(
-            'Not found',
-            404
-        );
+        $requested_file = $request->server->get('DOCUMENT_ROOT') . $request->server->get('PHP_SELF');
+
+        $response_parameters = file_exists($requested_file)
+            ? [include $requested_file]
+            : ['Not found', 404];
+
+        $response = new \Symfony\Component\HttpFoundation\Response(...$response_parameters);
+
         break;
 
     case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
