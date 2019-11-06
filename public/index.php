@@ -32,13 +32,17 @@ switch ($route[0]) {
 
     case \FastRoute\Dispatcher::FOUND:
         $controller = $route[1];
-        $parameters = [];
+        $parameters = [
+            'request' => $request,
+        ];
 
         // Route model binding
         foreach ($route[2] as $key => $value) {
-            $model = 'App\\Model\\' . Str::studly($key);
+            if (file_exists(__DIR__ . '/../app/Model/' . Str::studly($key))) {
+                $model = 'App\\Model\\' . Str::studly($key);
 
-            $parameters[$key] = $model::find($value);
+                $parameters[$key] = $model::find($value);
+            }
         }
 
         $response = $container->call($controller, $parameters);
