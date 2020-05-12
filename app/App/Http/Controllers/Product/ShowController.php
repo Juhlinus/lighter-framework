@@ -2,31 +2,24 @@
 
 namespace App\Http\Controllers\Product;
 
-use Twig_Environment;
 use Domain\Product\Models\Product;
 use Domain\Product\DTO\ProductData;
-use Symfony\Component\HttpFoundation\Response;
+use App\Http\Controllers\BaseController;
+use Psr\Http\Message\{
+    RequestInterface, 
+    ResponseInterface
+};
 
-class ShowController
+class ShowController extends BaseController
 {
-    /**
-     * @var Twig_Environment
-     */
-    private $twig;
-
-    public function __construct(Twig_Environment $twig)
+    public function __invoke(RequestInterface $request, array $args): ResponseInterface
     {
-        $this->twig = $twig;
-    }
+        $product = Product::find($args['product']);
 
-    public function __invoke(Product $product): Response
-    {
         $product_data = ProductData::create($product);
 
-        return new Response(
-            $this->twig->render('product/show.twig', [
-                'product' => $product_data,
-            ])
-        );
+        return $this->render('product/show.twig', [
+            'product' => $product_data,
+        ]);
     }
 }
