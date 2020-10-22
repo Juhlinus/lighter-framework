@@ -7,8 +7,7 @@
 </head>
 <body>
 	<div class="container">
-		{% block content %}
-		{% endblock %}
+        @yield('content')
 	</div>
 </body>
 </html>

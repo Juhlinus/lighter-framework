@@ -1,3 +1,5 @@
+.env
 .DS_Store
 .php_cs.dist
+bootstrap/cache
 vendor

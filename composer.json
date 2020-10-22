@@ -3,22 +3,18 @@
     "description": "A lightweight framework",
     "autoload": {
         "psr-4": {
-            "App\\": "app/App/",
-            "Domain\\": "app/Domain/"
+            "App\\": "app/"
         }
     },
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.4",
         "league/route": "^4.3",
         "laminas/laminas-httphandlerrunner": "^1.1",
         "laminas/laminas-diactoros": "^2.2",
         "league/container": "^3.3",
-        "twig/twig": "^2.12",
         "php-di/php-di": "^6.0",
-        "symfony/http-foundation": "^4.3",
-        "illuminate/database": "^6.3",
-        "illuminate/pagination": "^6.3",
-        "spatie/data-transfer-object": "^1.10"
+        "symfony/http-foundation": "^5.1",
+        "jenssegers/blade": "^1.4"
     },
     "license": "MIT",
     "authors": [
